@@ -157,15 +157,15 @@ curve.</p>
 <code class="sourceCode R"><span><span class="va">fitting1</span><span class="op">=</span><span class="fu"><a href="../reference/f.fitting.html">f.fitting</a></span><span class="op">(</span>measures <span class="op">=</span> <span class="va">measures</span>,Start <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>JmaxRef <span class="op">=</span> <span class="fl">30</span>, VcmaxRef <span class="op">=</span> <span class="fl">50</span>, RdRef <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,param<span class="op">=</span><span class="fu"><a href="../reference/f.make.param.html">f.make.param</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>                   modify.init<span class="op">=</span><span class="cn">TRUE</span>,do.plot<span class="op">=</span><span class="cn">TRUE</span>,type<span class="op">=</span><span class="st">'Aci'</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## $par</span></span>
-<span><span class="co">##    JmaxRef   VcmaxRef      RdRef </span></span>
-<span><span class="co">## 77.0202708 47.9096669  0.8837133 </span></span>
+<span><span class="co">##   JmaxRef  VcmaxRef     RdRef </span></span>
+<span><span class="co">## 78.962494 47.888017  1.125167 </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## $value</span></span>
-<span><span class="co">## [1] 16.89123</span></span>
+<span><span class="co">## [1] 17.68251</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## $counts</span></span>
 <span><span class="co">## function gradient </span></span>
-<span><span class="co">##      214       NA </span></span>
+<span><span class="co">##      216       NA </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## $convergence</span></span>
 <span><span class="co">## [1] 0</span></span>
@@ -173,7 +173,7 @@ curve.</p>
 <span><span class="co">## $message</span></span>
 <span><span class="co">## NULL</span></span>
 <span><span class="co">## </span></span>
-<span><span class="co">## [1] "sd 0.750360470933128"</span></span>
+<span><span class="co">## [1] "sd 0.76773495513519"</span></span>
 <span><span class="co">## Length  Class   Mode </span></span>
 <span><span class="co">##      1   mle2     S4</span></span></code></pre>
 <p><img src="Aci_fitting_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
@@ -183,14 +183,14 @@ curve.</p>
 <span>                   modify.init<span class="op">=</span><span class="cn">TRUE</span>,do.plot<span class="op">=</span><span class="cn">TRUE</span>,type<span class="op">=</span><span class="st">'Aci'</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## $par</span></span>
 <span><span class="co">##   JmaxRef  VcmaxRef     RdRef     TpRef </span></span>
-<span><span class="co">## 82.947930 49.612135  1.168832  4.913234 </span></span>
+<span><span class="co">## 90.111777 49.634377  1.469053  4.960355 </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## $value</span></span>
-<span><span class="co">## [1] 11.28015</span></span>
+<span><span class="co">## [1] 7.281046</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## $counts</span></span>
 <span><span class="co">## function gradient </span></span>
-<span><span class="co">##      407       NA </span></span>
+<span><span class="co">##      369       NA </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## $convergence</span></span>
 <span><span class="co">## [1] 0</span></span>
@@ -198,7 +198,7 @@ curve.</p>
 <span><span class="co">## $message</span></span>
 <span><span class="co">## NULL</span></span>
 <span><span class="co">## </span></span>
-<span><span class="co">## [1] "sd 0.613192484693365"</span></span>
+<span><span class="co">## [1] "sd 0.492647476483964"</span></span>
 <span><span class="co">## Length  Class   Mode </span></span>
 <span><span class="co">##      1   mle2     S4</span></span></code></pre>
 <p><img src="Aci_fitting_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
@@ -213,21 +213,21 @@ more info).</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">fitting2</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##               2.5 %     97.5 %</span></span>
-<span><span class="co">## sigma     0.4857392  0.8083757</span></span>
-<span><span class="co">## JmaxRef  77.4773088 89.2158930</span></span>
-<span><span class="co">## VcmaxRef 45.1100901 54.9294156</span></span>
-<span><span class="co">## TpRef     4.6493722  5.1903012</span></span>
-<span><span class="co">## RdRef     0.4440687  1.9172811</span></span></code></pre>
+<span><span class="co">## sigma     0.3902494  0.6494599</span></span>
+<span><span class="co">## JmaxRef  84.4848286         NA</span></span>
+<span><span class="co">## VcmaxRef 46.0850360 53.3552999</span></span>
+<span><span class="co">## TpRef     4.7420574  5.1695319</span></span>
+<span><span class="co">## RdRef     0.8935010  2.0412868</span></span></code></pre>
 <p>It is possible to compare the AIC of the two models using the base
 function AIC. The lower AIC corresponds to the best model, showing that
 in this case and as expected, the TPU limitation is useful to improve
 the fit of the model.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/AIC.html" class="external-link">AIC</a></span><span class="op">(</span><span class="va">fitting1</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] 75.90422</span></span></code></pre>
+<pre><code><span><span class="co">## [1] 77.27767</span></span></code></pre>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/AIC.html" class="external-link">AIC</a></span><span class="op">(</span><span class="va">fitting2</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] 65.79171</span></span></code></pre>
+<pre><code><span><span class="co">## [1] 52.65857</span></span></code></pre>
 <p>It is also possible to calculate the interval of confidence and
 prediction of the Aci curve from the outputs of the fitting.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">

@@ -175,14 +175,14 @@ this assumption later.</p>
 <span>                   modify.init<span class="op">=</span><span class="cn">TRUE</span>,do.plot<span class="op">=</span><span class="cn">TRUE</span>,type<span class="op">=</span><span class="st">'Aq'</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## $par</span></span>
 <span><span class="co">##    JmaxRef      RdRef      Theta </span></span>
-<span><span class="co">## 91.1058040  1.0993250  0.6656334 </span></span>
+<span><span class="co">## 88.2252853  0.9711878  0.6978096 </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## $value</span></span>
-<span><span class="co">## [1] 0.356863</span></span>
+<span><span class="co">## [1] 0.1896975</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## $counts</span></span>
 <span><span class="co">## function gradient </span></span>
-<span><span class="co">##      120       NA </span></span>
+<span><span class="co">##      126       NA </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## $convergence</span></span>
 <span><span class="co">## [1] 0</span></span>
@@ -190,7 +190,7 @@ this assumption later.</p>
 <span><span class="co">## $message</span></span>
 <span><span class="co">## NULL</span></span>
 <span><span class="co">## </span></span>
-<span><span class="co">## [1] "sd 0.15424288223646"</span></span>
+<span><span class="co">## [1] "sd 0.112456671774165"</span></span>
 <span><span class="co">## Length  Class   Mode </span></span>
 <span><span class="co">##      1   mle2     S4</span></span></code></pre>
 <p><img src="Aq_fitting_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
@@ -202,22 +202,22 @@ no information in the curve to estimate it.</p>
 <span>                   modify.init<span class="op">=</span><span class="cn">TRUE</span>,do.plot<span class="op">=</span><span class="cn">TRUE</span>,type<span class="op">=</span><span class="st">'Aq'</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## $par</span></span>
 <span><span class="co">##     JmaxRef    VcmaxRef       RdRef       Theta </span></span>
-<span><span class="co">##  91.1472544 223.2039836   1.0999653   0.6656598 </span></span>
+<span><span class="co">##  88.3400110 107.2449843   0.9708728   0.6976149 </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## $value</span></span>
-<span><span class="co">## [1] 0.3569293</span></span>
+<span><span class="co">## [1] 0.1896713</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## $counts</span></span>
 <span><span class="co">## function gradient </span></span>
-<span><span class="co">##      501       NA </span></span>
+<span><span class="co">##      445       NA </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## $convergence</span></span>
-<span><span class="co">## [1] 1</span></span>
+<span><span class="co">## [1] 0</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## $message</span></span>
 <span><span class="co">## NULL</span></span>
 <span><span class="co">## </span></span>
-<span><span class="co">## [1] "sd 0.154257212993837"</span></span>
+<span><span class="co">## [1] "sd 0.112448902807969"</span></span>
 <span><span class="co">## Length  Class   Mode </span></span>
 <span><span class="co">##      1   mle2     S4</span></span></code></pre>
 <p><img src="Aq_fitting_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
@@ -231,34 +231,34 @@ in the input data file of the function (see the help of f.fitting for
 more info).</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">fitting1</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">##              2.5 %     97.5 %</span></span>
-<span><span class="co">## sigma    0.1121193  0.2315494</span></span>
-<span><span class="co">## JmaxRef 89.5922893 92.6655218</span></span>
-<span><span class="co">## RdRef    0.9488200  1.2489213</span></span>
-<span><span class="co">## Theta    0.6028079  0.7204107</span></span></code></pre>
+<pre><code><span><span class="co">##               2.5 %     97.5 %</span></span>
+<span><span class="co">## sigma    0.08174494  0.1688199</span></span>
+<span><span class="co">## JmaxRef 87.16275567 89.3061391</span></span>
+<span><span class="co">## RdRef    0.86066886  1.0810409</span></span>
+<span><span class="co">## Theta    0.65500027  0.7364002</span></span></code></pre>
 <p>It is possible to compare the AIC of the two models using the base
 function AIC or BIC. The lower AIC or BIC corresponds to the best model.
 It shows in this case that adding VcmaxRef is not usefull.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/AIC.html" class="external-link">BIC</a></span><span class="op">(</span><span class="va">fitting1</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] -7.963471</span></span></code></pre>
+<pre><code><span><span class="co">## [1] -17.44228</span></span></code></pre>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/AIC.html" class="external-link">BIC</a></span><span class="op">(</span><span class="va">fitting2</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] -6.574518</span></span></code></pre>
+<pre><code><span><span class="co">## [1] -16.05806</span></span></code></pre>
 <p>We can redo this procedure for the second simulated curve:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fitting3</span><span class="op">=</span><span class="fu"><a href="../reference/f.fitting.html">f.fitting</a></span><span class="op">(</span>measures <span class="op">=</span> <span class="va">measures2</span>,Start <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>JmaxRef <span class="op">=</span> <span class="fl">30</span>, RdRef <span class="op">=</span> <span class="fl">1</span>,Theta<span class="op">=</span><span class="fl">0.5</span><span class="op">)</span>,param<span class="op">=</span><span class="fu"><a href="../reference/f.make.param.html">f.make.param</a></span><span class="op">(</span>abso<span class="op">=</span><span class="fl">0.9</span>,VcmaxRef<span class="op">=</span><span class="fl">150</span><span class="op">)</span>,</span>
 <span>                   modify.init<span class="op">=</span><span class="cn">TRUE</span>,do.plot<span class="op">=</span><span class="cn">TRUE</span>,type<span class="op">=</span><span class="st">'Aq'</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## $par</span></span>
 <span><span class="co">##    JmaxRef      RdRef      Theta </span></span>
-<span><span class="co">## 80.2918206  0.9357455  0.8066975 </span></span>
+<span><span class="co">## 80.2257330  1.0748982  0.8526667 </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## $value</span></span>
-<span><span class="co">## [1] 0.6441247</span></span>
+<span><span class="co">## [1] 0.7857634</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## $counts</span></span>
 <span><span class="co">## function gradient </span></span>
-<span><span class="co">##      132       NA </span></span>
+<span><span class="co">##      116       NA </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## $convergence</span></span>
 <span><span class="co">## [1] 0</span></span>
@@ -266,7 +266,7 @@ It shows in this case that adding VcmaxRef is not usefull.</p>
 <span><span class="co">## $message</span></span>
 <span><span class="co">## NULL</span></span>
 <span><span class="co">## </span></span>
-<span><span class="co">## [1] "sd 0.207223659568046"</span></span>
+<span><span class="co">## [1] "sd 0.228876012575196"</span></span>
 <span><span class="co">## Length  Class   Mode </span></span>
 <span><span class="co">##      1   mle2     S4</span></span></code></pre>
 <p><img src="Aq_fitting_files/figure-html/unnamed-chunk-9-1.png" width="700"></p>
@@ -275,14 +275,14 @@ It shows in this case that adding VcmaxRef is not usefull.</p>
 <span>                   modify.init<span class="op">=</span><span class="cn">TRUE</span>,do.plot<span class="op">=</span><span class="cn">TRUE</span>,type<span class="op">=</span><span class="st">'Aq'</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## $par</span></span>
 <span><span class="co">##    JmaxRef      RdRef      Theta   VcmaxRef </span></span>
-<span><span class="co">## 91.0102515  0.8282943  0.6501977 54.4861347 </span></span>
+<span><span class="co">## 87.9468745  0.9802474  0.7498365 55.2109305 </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## $value</span></span>
-<span><span class="co">## [1] 0.2620363</span></span>
+<span><span class="co">## [1] 0.431244</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## $counts</span></span>
 <span><span class="co">## function gradient </span></span>
-<span><span class="co">##      299       NA </span></span>
+<span><span class="co">##      449       NA </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## $convergence</span></span>
 <span><span class="co">## [1] 0</span></span>
@@ -290,7 +290,7 @@ It shows in this case that adding VcmaxRef is not usefull.</p>
 <span><span class="co">## $message</span></span>
 <span><span class="co">## NULL</span></span>
 <span><span class="co">## </span></span>
-<span><span class="co">## [1] "sd 0.132170675027424"</span></span>
+<span><span class="co">## [1] "sd 0.16955707050959"</span></span>
 <span><span class="co">## Length  Class   Mode </span></span>
 <span><span class="co">##      1   mle2     S4</span></span></code></pre>
 <p><img src="Aq_fitting_files/figure-html/unnamed-chunk-9-2.png" width="700"></p>
@@ -298,10 +298,10 @@ It shows in this case that adding VcmaxRef is not usefull.</p>
 a parameter to estimate:</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/AIC.html" class="external-link">BIC</a></span><span class="op">(</span><span class="va">fitting3</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] 0.8946358</span></span></code></pre>
+<pre><code><span><span class="co">## [1] 3.876087</span></span></code></pre>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/AIC.html" class="external-link">BIC</a></span><span class="op">(</span><span class="va">fitting4</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] -11.21021</span></span></code></pre>
+<pre><code><span><span class="co">## [1] -3.737345</span></span></code></pre>
 <p>In this case, the model with VcmaxRef is better.</p>
 <p>Generally it is interesting to test the fitting with or without
 VcmaxRef, and sometimes with or without Theta. Note that Theta can be
