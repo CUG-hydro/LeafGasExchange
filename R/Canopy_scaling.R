@@ -57,7 +57,11 @@ f.tridiagonal.solver=function(a,b,c,d,n){
 }
 
 #' @title Norman 1979 Radiation interception model
-#' Converted into a R code from the original code of Gordon Bonan: Bonan, G. (2019). Climate Change and Terrestrial Ecosystem Modeling. Cambridge: Cambridge University Press. doi:10.1017/9781107339217
+#' 
+#' Converted into a R code from the original code of Gordon Bonan: Bonan, G.
+#' (2019). Climate Change and Terrestrial Ecosystem Modeling. Cambridge:
+#' Cambridge University Press. doi:10.1017/9781107339217
+#' 
 #' @param Rho Leaf reflectance.
 #' @param Tau Leaf transmittance.
 #' @param Rho_soil_dir Direct beam albedo of ground (soil).
@@ -76,10 +80,9 @@ f.tridiagonal.solver=function(a,b,c,d,n){
 #' fracsun Proportion of sunlit leaves
 #' fracsha Proportion of shaded leaves
 #' @export
-#'
+#' 
 #' @examples
 #' f.Norman.Radiation(Rho=0.1, Tau=0.05, PARdir=1000,PARdif=200,dLAI=c(rep(6/20,20)),nlayers=20,Rho_soil_dif = 0.1,Rho_soil_dir = 0.1,cosz = 0.88,chil = 0.1,clumpfac = 0.8)
-
 f.Norman.Radiation=function(Rho=0.1, Tau=0.05, Rho_soil_dir=0.1,Rho_soil_dif=0.1,cosz,chil,clumpfac,dLAI,nlayers,PARdir=0.8,PARdif=0.2){
   if(length(dLAI)!=nlayers){print('Error: the input parameters nlayers does not correspond to the length of the input vector dLAI')}
   ## be careful, the original code by Bonan works with the first layer being the ground and the last being the top.
@@ -97,11 +100,9 @@ f.Norman.Radiation=function(Rho=0.1, Tau=0.05, Rho_soil_dir=0.1,Rho_soil_dif=0.1
   gdir = phi1 + phi2 * cosz
   
   # Direct beam extinction coefficient
-  
   Kb = gdir / cosz;
   
   # Prevent large Kb at low sun angle
-  
   Kb = min(Kb, 20)
   
   fracsun = clumpfac * exp(-Kb * sumlai *clumpfac);
@@ -127,8 +128,6 @@ f.Norman.Radiation=function(Rho=0.1, Tau=0.05, Rho_soil_dir=0.1,Rho_soil_dif=0.1
     cumlai = cumlai + dLAI[iv]
     tbcum[iv-1] = exp(-Kb * cumlai * clumpfac);
   }
-  
-  
   print(paste('Radiation model for a total LAI of ', lai))
   
   swup=swdn=rep(0,nlayers+1)
@@ -143,7 +142,6 @@ f.Norman.Radiation=function(Rho=0.1, Tau=0.05, Rho_soil_dir=0.1,Rho_soil_dif=0.1
   d[m] = PARdir * tbcum[m] * Rho_soil_dir
   
   # Soil: downward flux
-  
   refld = (1 - td[iv+1]) * Rho
   trand = (1 - td[iv+1]) * Tau + td[iv+1]
   aiv = refld - trand * trand / refld;
@@ -156,10 +154,8 @@ f.Norman.Radiation=function(Rho=0.1, Tau=0.05, Rho_soil_dir=0.1,Rho_soil_dif=0.1
   d[m] = PARdir * tbcum[iv+1] * (1 - tb[iv+1]) * (Tau - Rho * biv)
   
   # Leaf layers, excluding top layer
-  
   for (iv in 2:(nlayers)){
     # Upward flux
-    
     refld = (1 - td[iv]) * Rho
     trand = (1 - td[iv]) * Tau + td[iv]
     fiv = refld - trand * trand / refld
@@ -172,7 +168,6 @@ f.Norman.Radiation=function(Rho=0.1, Tau=0.05, Rho_soil_dir=0.1,Rho_soil_dif=0.1
     d[m] = PARdir * tbcum[iv] * (1 - tb[iv]) * (Rho - Tau * eiv)
     
     # Downward flux
-    
     refld = (1 - td[iv+1]) * Rho
     trand = (1 - td[iv+1]) * Tau + td[iv+1]
     aiv = refld - trand * trand / refld;
@@ -183,11 +178,9 @@ f.Norman.Radiation=function(Rho=0.1, Tau=0.05, Rho_soil_dir=0.1,Rho_soil_dif=0.1
     b[m] = 1
     c[m] = -biv
     d[m] = PARdir * tbcum[iv+1] * (1 - tb[iv+1]) * (Tau - Rho * biv)
-    
   }
   
   # Top canopy layer: upward flux
-  
   iv = nlayers+1
   refld = (1 - td[iv]) * Rho
   trand = (1 - td[iv]) * Tau + td[iv]
@@ -201,7 +194,6 @@ f.Norman.Radiation=function(Rho=0.1, Tau=0.05, Rho_soil_dir=0.1,Rho_soil_dif=0.1
   d[m] = PARdir * tbcum[iv] * (1 - tb[iv]) * (Rho - Tau * eiv)
   
   # Top canopy layer: downward flux
-  
   m = m + 1
   a[m] = 0
   b[m] = 1
@@ -209,15 +201,13 @@ f.Norman.Radiation=function(Rho=0.1, Tau=0.05, Rho_soil_dir=0.1,Rho_soil_dif=0.1
   d[m] = PARdif
   
   # Solve tridiagonal equations for fluxes
-  
   u = f.tridiagonal.solver(a, b, c, d, m)
   
- # Now copy the solution (u) to the upward (swup) and downward (swdn) fluxes for each layer
+  # Now copy the solution (u) to the upward (swup) and downward (swdn) fluxes for each layer
   # swup - Upward diffuse solar flux above layer
   # swdn - Downward diffuse solar flux onto layer
   
   # Soil fluxes
-  
   iv = 1
   m = 1
   swup[iv] = u[m]
@@ -225,7 +215,6 @@ f.Norman.Radiation=function(Rho=0.1, Tau=0.05, Rho_soil_dir=0.1,Rho_soil_dif=0.1
   swdn[iv] = u[m]
   
   # Leaf layer fluxes
-  
   for (iv in 2:(nlayers+1)){
     m = m + 1
     swup[iv] = u[m]
@@ -233,10 +222,8 @@ f.Norman.Radiation=function(Rho=0.1, Tau=0.05, Rho_soil_dir=0.1,Rho_soil_dif=0.1
     swdn[iv] = u[m] 
   }
 
- # --- Compute flux densities
-  
+  # --- Compute flux densities
   # Absorbed direct beam and diffuse for ground (soil)
-  
   iv = 1
   direct = PARdir * tbcum[iv] * (1 - Rho_soil_dir)
   diffuse = swdn[iv] * (1 - Rho_soil_dif)
@@ -244,7 +231,6 @@ f.Norman.Radiation=function(Rho=0.1, Tau=0.05, Rho_soil_dir=0.1,Rho_soil_dif=0.1
   
   # Absorbed direct beam and diffuse for each leaf layer and sum
   # for all leaf layers
-  
   swveg = 0
   swvegsun = 0
   swvegsha = 0
@@ -252,30 +238,25 @@ f.Norman.Radiation=function(Rho=0.1, Tau=0.05, Rho_soil_dir=0.1,Rho_soil_dif=0.1
   
   for (iv in 2:(nlayers+1)){
     # Per unit ground area (W/m2 ground)
-    
     direct = PARdir * tbcum[iv] * (1 - tb[iv]) * (1 - omega)
     diffuse = (swdn[iv] + swup[iv-1]) * (1 - td[iv]) * (1 - omega)
     
     # Absorbed solar radiation for shaded and sunlit portions of leaf layer
     # per unit ground area (W/m2 ground)
-    
     sun = diffuse * fracsun[iv] + direct
     shade = diffuse * fracsha[iv]
     
     # Convert to per unit sunlit and shaded leaf area (W/m2 leaf)
-    
     swleafsun[iv] = sun / (fracsun[iv] * dLAI[iv])
     swleafsha[iv] = shade / (fracsha[iv] * dLAI[iv])
     
     # Sum fluxes over all leaf layers
-    
     swveg = swveg + (direct + diffuse)
     swvegsun = swvegsun + sun
     swvegsha = swvegsha + shade
   }
   
   # --- Albedo
-  
   incoming = PARdir + PARdif
   reflected = swup[nlayers+1]
   if (incoming > 0){
@@ -284,11 +265,8 @@ f.Norman.Radiation=function(Rho=0.1, Tau=0.05, Rho_soil_dir=0.1,Rho_soil_dif=0.1
     albcan = 0;
   }
 
-  
   # --- Conservation check
-  
   # Total radiation balance: absorbed = incoming - outgoing
-  
   suminc = PARdir + PARdif
   sumref = albcan * (PARdir + PARdif)
   sumabs = suminc - sumref
@@ -299,8 +277,7 @@ f.Norman.Radiation=function(Rho=0.1, Tau=0.05, Rho_soil_dir=0.1,Rho_soil_dif=0.1
     error ('NormanRadiation: Total solar conservation error')
   }
 
-    # Sunlit and shaded absorption
-  
+  # Sunlit and shaded absorption
   err = (swvegsun + swvegsha) - swveg
   if (abs(err) > 1e-03){
     print('err = %15.5f\n',err)
